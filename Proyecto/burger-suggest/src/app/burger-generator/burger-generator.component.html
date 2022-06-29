@@ -49,6 +49,7 @@
           Next
         </button>
       </div>
+      (Sí, pusimos imágenes de animales, y qué :v)
       <div class="ing-display">
         <a (click)="selectMeat('')">
           <mat-card [ngClass]="this.selectedMeat == '' ? 'selected' : ''">
@@ -162,16 +163,19 @@
             />
           </div>
         </form>
-        <button mat-raised-button color="primary" (click)="setBurger()">
+        <button style="margin-bottom: 1rem;" mat-raised-button color="primary" (click)="setBurger()">
           Generate burger!
         </button>
-        <div style="display: flex; overflow: scroll" *ngIf="burger">
-          <mat-card style="margin: 1rem" *ngFor="let ing of burger">
-            <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
-            <mat-card-content>
-              {{ ing }}
-            </mat-card-content>
-          </mat-card>
+        <div *ngIf="burger.length">
+          <h3>This is your algorithm generated burger:</h3>
+          <div style="display: flex; overflow: scroll;">
+            <mat-card style="margin: 1rem" *ngFor="let ing of burger">
+              <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
+              <mat-card-content>
+                {{ ing }}
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
     </ng-template>
