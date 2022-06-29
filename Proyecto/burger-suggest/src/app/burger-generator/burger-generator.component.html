@@ -1,149 +1,179 @@
 <mat-stepper>
-  <mat-step label="Choose your bread">
-    <div style="overflow: hidden">
-      <button
-        mat-raised-button
-        color="primary"
-        style="float: right"
-        matStepperNext
-      >
-        Next
-      </button>
-    </div>
-    <div class="ing-display">
-      <a (click)="selectBread('')">
-        <mat-card [ngClass]="this.selectedBread == '' ? 'selected' : ''">
-          <img
-            mat-card-image
-            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
-          />
-          <mat-card-content> Surprise me! </mat-card-content>
-        </mat-card>
-      </a>
-      <a (click)="selectBread(bread)" *ngFor="let bread of this.BREADS">
-        <mat-card [ngClass]="this.selectedBread == bread ? 'selected' : ''">
-          <img mat-card-image src="{{ this.PHOTOS[bread] }}" />
-          <mat-card-content>
-            {{ bread }}
-          </mat-card-content>
-        </mat-card>
-      </a>
-    </div>
-  </mat-step>
-  <mat-step label="Choose your meat">
-    <div style="overflow: hidden">
-      <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-      <button
-        mat-raised-button
-        color="primary"
-        style="float: right"
-        matStepperNext
-      >
-        Next
-      </button>
-    </div>
-    <div class="ing-display">
-      <a (click)="selectMeat('')">
-        <mat-card [ngClass]="this.selectedMeat == '' ? 'selected' : ''">
-          <img
-            mat-card-image
-            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
-          />
-          <mat-card-content> Surprise me! </mat-card-content>
-        </mat-card>
-      </a>
-      <a (click)="selectMeat(meat)" *ngFor="let meat of this.MEATS">
-        <mat-card [ngClass]="this.selectedMeat == meat ? 'selected' : ''">
-          <img mat-card-image src="{{ this.PHOTOS[meat] }}" />
-          <mat-card-content>
-            {{ meat }}
-          </mat-card-content>
-        </mat-card>
-      </a>
-    </div>
-  </mat-step>
-  <mat-step label="Choose your extras">
-    <div style="overflow: hidden">
-      <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-      <button
-        mat-raised-button
-        color="primary"
-        style="float: right"
-        matStepperNext
-      >
-        Next
-      </button>
-    </div>
-    <div class="ing-display">
-      <a (click)="selectExtra('')">
-        <mat-card [ngClass]="this.selectedExtras.length == 0 ? 'selected' : ''">
-          <img
-            mat-card-image
-            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
-          />
-          <mat-card-content> Surprise me! </mat-card-content>
-        </mat-card>
-      </a>
-      <a (click)="selectExtra(extra)" *ngFor="let extra of this.EXTRAS | async">
-        <mat-card
-          [ngClass]="this.selectedExtras.includes(extra) ? 'selected' : ''"
+  <mat-step>
+    <ng-template matStepLabel>Choose your bread</ng-template>
+    <ng-template matStepContent>
+      <div style="overflow: hidden">
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right"
+          matStepperNext
         >
-          <img mat-card-image src="{{ this.PHOTOS[extra] }}" />
-          <mat-card-content>
-            {{ extra }}
-          </mat-card-content>
-        </mat-card>
-      </a>
-    </div>
+          Next
+        </button>
+      </div>
+      <div class="ing-display">
+        <a (click)="selectBread('')">
+          <mat-card [ngClass]="this.selectedBread == '' ? 'selected' : ''">
+            <img
+              mat-card-image
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
+            />
+            <mat-card-content> Surprise me! </mat-card-content>
+          </mat-card>
+        </a>
+        <a (click)="selectBread(bread)" *ngFor="let bread of this.BREADS">
+          <mat-card [ngClass]="this.selectedBread == bread ? 'selected' : ''">
+            <img mat-card-image src="{{ this.PHOTOS[bread] }}" />
+            <mat-card-content>
+              {{ bread }}
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+    </ng-template>
   </mat-step>
-  <mat-step label="Check your order">
-    <div style="overflow: hidden">
-      <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-    </div>
-    <div style="margin: 2rem">
-      <h2>Your ingredients so far:</h2>
-      <div style="display: flex; overflow: scroll">
-        <mat-card style="margin: 1rem" *ngIf="!getIngList().length">
-          <img
-            mat-card-image
-            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
-          />
-          <mat-card-content> Surprise me! </mat-card-content>
-        </mat-card>
-        <mat-card style="margin: 1rem" *ngFor="let ing of this.getIngList()">
-          <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
-          <mat-card-content>
-            {{ ing }}
-          </mat-card-content>
-        </mat-card>
+  <mat-step>
+    <ng-template matStepLabel>Choose your meat</ng-template>
+    <ng-template matStepContent>
+      <div style="overflow: hidden">
+        <button mat-raised-button color="primary" matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right"
+          matStepperNext
+        >
+          Next
+        </button>
       </div>
-      <h3>How many extra ingredients do you want our algorithm to generate?</h3>
-      <form class="burger-params-form">
-        <mat-form-field appearance="fill">
-          <mat-label>Amount</mat-label>
-          <input name="amount" type="number" matInput [(ngModel)]="ingAmount" />
-        </mat-form-field>
-        <div style="margin-bottom: 1rem">
-        <label for="dissonant">Dissonant</label>
-        <input
-          id="dissonant"
-          name="dissonant"
-          type="checkbox"
-          [(ngModel)]="dissonant"
-        />
+      <div class="ing-display">
+        <a (click)="selectMeat('')">
+          <mat-card [ngClass]="this.selectedMeat == '' ? 'selected' : ''">
+            <img
+              mat-card-image
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
+            />
+            <mat-card-content> Surprise me! </mat-card-content>
+          </mat-card>
+        </a>
+        <a (click)="selectMeat(meat)" *ngFor="let meat of this.MEATS">
+          <mat-card [ngClass]="this.selectedMeat == meat ? 'selected' : ''">
+            <img mat-card-image src="{{ this.PHOTOS[meat] }}" />
+            <mat-card-content>
+              {{ meat }}
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Choose your extras</ng-template>
+    <ng-template matStepContent>
+      <div style="overflow: hidden">
+        <button mat-raised-button color="primary" matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right"
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+      <div class="ing-display">
+        <a (click)="selectExtra('')">
+          <mat-card
+            [ngClass]="this.selectedExtras.length == 0 ? 'selected' : ''"
+          >
+            <img
+              mat-card-image
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
+            />
+            <mat-card-content> Surprise me! </mat-card-content>
+          </mat-card>
+        </a>
+        <a
+          (click)="selectExtra(extra)"
+          *ngFor="let extra of this.EXTRAS | async"
+        >
+          <mat-card
+            [ngClass]="this.selectedExtras.includes(extra) ? 'selected' : ''"
+          >
+            <img mat-card-image src="{{ this.PHOTOS[extra] }}" />
+            <mat-card-content>
+              {{ extra }}
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Check your order</ng-template>
+    <ng-template matStepContent>
+      <div style="overflow: hidden">
+        <button mat-raised-button color="primary" matStepperPrevious>
+          Back
+        </button>
+      </div>
+      <div style="margin: 2rem">
+        <h2>Your ingredients so far:</h2>
+        <div style="display: flex; overflow: scroll">
+          <mat-card style="margin: 1rem" *ngIf="!getIngList().length">
+            <img
+              mat-card-image
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
+            />
+            <mat-card-content> Surprise me! </mat-card-content>
+          </mat-card>
+          <mat-card style="margin: 1rem" *ngFor="let ing of this.getIngList()">
+            <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
+            <mat-card-content>
+              {{ ing }}
+            </mat-card-content>
+          </mat-card>
         </div>
-      </form>
-      <button mat-raised-button color="primary" (click)="setBurger()">
-        Generate burger!
-      </button>
-      <div style="display: flex; overflow: scroll" *ngIf="burger">
-        <mat-card style="margin: 1rem" *ngFor="let ing of burger">
-          <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
-          <mat-card-content>
-            {{ ing }}
-          </mat-card-content>
-        </mat-card>
+        <h3>
+          How many extra ingredients do you want our algorithm to generate?
+        </h3>
+        <form class="burger-params-form">
+          <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input
+              name="amount"
+              type="number"
+              matInput
+              [(ngModel)]="ingAmount"
+            />
+          </mat-form-field>
+          <div style="margin-bottom: 1rem">
+            <label for="dissonant">Dissonant</label>
+            <input
+              id="dissonant"
+              name="dissonant"
+              type="checkbox"
+              [(ngModel)]="dissonant"
+            />
+          </div>
+        </form>
+        <button mat-raised-button color="primary" (click)="setBurger()">
+          Generate burger!
+        </button>
+        <div style="display: flex; overflow: scroll" *ngIf="burger">
+          <mat-card style="margin: 1rem" *ngFor="let ing of burger">
+            <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
+            <mat-card-content>
+              {{ ing }}
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
-    </div>
+    </ng-template>
   </mat-step>
 </mat-stepper>
