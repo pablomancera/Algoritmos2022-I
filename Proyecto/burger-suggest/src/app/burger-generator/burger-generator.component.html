@@ -11,14 +11,6 @@
       </button>
     </div>
     <div class="ing-display">
-      <a (click)="selectBread(bread)" *ngFor="let bread of this.BREADS">
-        <mat-card [ngClass]="this.selectedBread == bread ? 'selected' : ''">
-          <img mat-card-image src="{{ this.PHOTOS[bread] }}" />
-          <mat-card-content>
-            {{ bread }}
-          </mat-card-content>
-        </mat-card>
-      </a>
       <a (click)="selectBread('')">
         <mat-card [ngClass]="this.selectedBread == '' ? 'selected' : ''">
           <img
@@ -26,6 +18,14 @@
             src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
           />
           <mat-card-content> Surprise me! </mat-card-content>
+        </mat-card>
+      </a>
+      <a (click)="selectBread(bread)" *ngFor="let bread of this.BREADS">
+        <mat-card [ngClass]="this.selectedBread == bread ? 'selected' : ''">
+          <img mat-card-image src="{{ this.PHOTOS[bread] }}" />
+          <mat-card-content>
+            {{ bread }}
+          </mat-card-content>
         </mat-card>
       </a>
     </div>
@@ -43,14 +43,6 @@
       </button>
     </div>
     <div class="ing-display">
-      <a (click)="selectMeat(meat)" *ngFor="let meat of this.MEATS">
-        <mat-card [ngClass]="this.selectedMeat == meat ? 'selected' : ''">
-          <img mat-card-image src="{{ this.PHOTOS[meat] }}" />
-          <mat-card-content>
-            {{ meat }}
-          </mat-card-content>
-        </mat-card>
-      </a>
       <a (click)="selectMeat('')">
         <mat-card [ngClass]="this.selectedMeat == '' ? 'selected' : ''">
           <img
@@ -58,6 +50,14 @@
             src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
           />
           <mat-card-content> Surprise me! </mat-card-content>
+        </mat-card>
+      </a>
+      <a (click)="selectMeat(meat)" *ngFor="let meat of this.MEATS">
+        <mat-card [ngClass]="this.selectedMeat == meat ? 'selected' : ''">
+          <img mat-card-image src="{{ this.PHOTOS[meat] }}" />
+          <mat-card-content>
+            {{ meat }}
+          </mat-card-content>
         </mat-card>
       </a>
     </div>
@@ -75,6 +75,15 @@
       </button>
     </div>
     <div class="ing-display">
+      <a (click)="selectExtra('')">
+        <mat-card [ngClass]="this.selectedExtras.length == 0 ? 'selected' : ''">
+          <img
+            mat-card-image
+            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
+          />
+          <mat-card-content> Surprise me! </mat-card-content>
+        </mat-card>
+      </a>
       <a (click)="selectExtra(extra)" *ngFor="let extra of this.EXTRAS | async">
         <mat-card
           [ngClass]="this.selectedExtras.includes(extra) ? 'selected' : ''"
@@ -83,15 +92,6 @@
           <mat-card-content>
             {{ extra }}
           </mat-card-content>
-        </mat-card>
-      </a>
-      <a (click)="selectExtra('')">
-        <mat-card [ngClass]="this.selectedExtras ? 'selected' : ''">
-          <img
-            mat-card-image
-            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Crystal_Clear_app_Startup_Wizard.png"
-          />
-          <mat-card-content> Surprise me! </mat-card-content>
         </mat-card>
       </a>
     </div>
