@@ -125,7 +125,7 @@
       </div>
       <div style="margin: 2rem">
         <h2>Your ingredients so far:</h2>
-        <div style="display: flex; overflow: scroll">
+        <div style="display: flex; overflow-x: scroll">
           <mat-card style="margin: 1rem" *ngIf="!getIngList().length">
             <img
               mat-card-image
@@ -168,7 +168,7 @@
         </button>
         <div *ngIf="burger.length">
           <h3>This is your algorithm generated burger:</h3>
-          <div style="display: flex; overflow: scroll;">
+          <div style="display: flex; overflow-x: scroll;">
             <mat-card style="margin: 1rem" *ngFor="let ing of burger">
               <img mat-card-image src="{{ this.PHOTOS[ing] }}" />
               <mat-card-content>
